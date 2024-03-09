@@ -7,13 +7,25 @@
     "marko": "^5.33.5"
   },
   "devDependencies": {
-    "@marko/run": "^0.4.3"
+    "@marko/run": "^0.4.3",
+    "@storybook/addon-essentials": "^7.6.17",
+    "@storybook/addon-interactions": "^7.6.17",
+    "@storybook/addon-links": "^7.6.17",
+    "@storybook/blocks": "^7.6.17",
+    "@storybook/marko": "^8.0.5",
+    "@storybook/marko-vite": "^1.0.4",
+    "@storybook/test": "^7.6.17",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.6.17"
   },
   "private": true,
   "scripts": {
     "dev": "marko-run",
     "build": "marko-run build",
     "preview": "marko-run preview",
-    "start": "node --enable-source-maps ./dist/index.mjs"
+    "start": "node --enable-source-maps ./dist/index.mjs",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   }
 }
