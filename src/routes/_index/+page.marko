@@ -1,5 +1,14 @@
+import { getPopularShows } from "../../utils/get-shows";
+
 <div class="container">
   <ds-button size="medium">
     Testing
   </ds-button>
+  <await(getPopularShows) client-reorder>
+    <@then|shows|>
+      <for|show| of=shows>
+        <p>${show.name}</p>
+      </for>
+    </@then>
+  </await>
 </div>
