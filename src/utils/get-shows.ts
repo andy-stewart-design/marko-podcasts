@@ -33,15 +33,17 @@ interface Podcast {
   genres: string[];
 }
 
-export async function getPopularShows() {
-  const response = await fetch(
-    "https://rss.applemarketingtools.com/api/v2/us/podcasts/top/10/podcasts.json"
-  );
-  const json = await response.json();
-  return json.feed.results;
+export async function getShows(query: string) {
+  console.log({ query });
+
+  if (query === "") {
+    return getPopularShows();
+  } else {
+    return getShowsByKeyword(query);
+  }
 }
 
-export async function getPopularShows2() {
+export async function getPopularShows() {
   const response = await fetch(
     "https://rss.applemarketingtools.com/api/v2/us/podcasts/top/12/podcasts.json"
   );
@@ -65,12 +67,12 @@ export async function getShowsByKeyword(query = "technology") {
   const params = new URLSearchParams();
   params.set("term", query);
   params.set("media", "podcast");
-  params.set("limit", "10");
+  params.set("limit", "12");
   const response = await fetch(
     `https://itunes.apple.com/search?${params.toString()}`
   );
   const json = await response.json();
-  return json;
+  return json.results.map((show) => formatPodcastData(show));
 }
 
 function formatPodcastData(data: Podcast) {

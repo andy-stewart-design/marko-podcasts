@@ -1,11 +1,13 @@
-import { getPopularShows, getPopularShows2 } from "../../utils/get-shows";
+import { getShows } from "../../utils/get-shows";
 import { mockdata } from "../../constants/mockdata";
+$ const query = $global.url.searchParams.get("query");
 
 <div class="container">
-  <pod-grid collection=mockdata/>
-  <!-- <await(getPopularShows2()) client-reorder>
+  <site-header query=query/>
+  <pod-grid collection=mockdata query=query/>
+  <!-- <await(getShows(query)) client-reorder>
     <@then|shows|>
-      <pod-grid collection=shows/>
+      <pod-grid collection=shows query=query/>
     </@then>
   </await> -->
 </div>

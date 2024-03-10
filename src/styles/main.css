@@ -5,6 +5,8 @@
 
 html,
 body {
+  --app-max-width: 1600px;
+
   min-height: 100%;
   color: var(--gray-50);
   background: var(--gray-950);

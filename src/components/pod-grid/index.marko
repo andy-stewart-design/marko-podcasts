@@ -1,14 +1,58 @@
-<section class="grid">
-    <for|show| of=input.collection>
-        <pod-card content=show/>
-    </for>
+<section class="wrapper">
+    <div class="grid">
+        <div class="category">
+            <if(input.query)>
+                <p>
+                    <span>Showing results for</span>
+                    ${` ${input.query}`}
+                </p>
+            </if>
+            <else>
+                <p>Popular Podcasts</p>
+            </else>
+        </div>
+        <for|show| of=input.collection>
+            <pod-card content=show/>
+        </for>
+    </div>
 </section>
 <!--  -->
 style {
-    section.grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        padding: 1rem;
+    section.wrapper {
+        div.grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+            padding-inline: 1rem;
+            padding-block: 2rem;
+            max-width: var(--app-max-width);
+            margin: auto;
+
+            opacity: 0;
+            animation-name: grid-fade-in;
+            animation-duration: 400ms;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+            animation-delay: 200ms;
+        }
+    }
+
+    div.category {
+        grid-column: 1 / -1;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-transform: capitalize;
+
+        span {
+            opacity: 0.6;
+            font-weight: 400;
+            text-transform: none;
+        }
+    }
+
+    @keyframes grid-fade-in {
+        to {
+            opacity: 1;
+        }
     }
 }
