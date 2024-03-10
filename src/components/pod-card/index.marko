@@ -1,0 +1,133 @@
+class {
+    onMount() {
+        this.state = { dialog: undefined };
+        this.state.dialog = this.getEl("showDialog");
+    }
+    openDalog() {
+        this.state.dialog.showModal();
+    }
+    closeDialog() {
+        this.state.dialog.close();
+    }
+}
+$ const { content } = input;
+$ const imgSrc = (
+    content.images.xl ??
+    content.images.lg ??
+    content.images.md ??
+    content.images.sm
+);
+
+<button on-click("openDalog") class="card">
+    <img src=imgSrc alt="" width=100 height=100>
+    <div class="wrapper">
+        <h2>${content.title}</h2>
+        <h3>${content.artist}</h3>
+        <ul role="list">
+            <for|genre| of=content.genres>
+                <li>${genre}</li>
+            </for>
+        </ul>
+    </div>
+</button>
+<dialog key="showDialog">
+    <button autofocus on-click("closeDialog")>
+        Close
+    </button>
+    <p>${content.title}</p>
+</dialog>
+<!--  -->
+style {
+    button.card {
+        --shadow-color: 281deg 6% 9%;
+        --shadow-elevation-low: 0.3px 0.5px 0.7px
+                hsl(var(--shadow-color) / 0.34),
+            0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
+            1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
+        --shadow-elevation-medium: 0.3px 0.5px 0.7px
+                hsl(var(--shadow-color) / 0.36),
+            0.8px 1.6px 2px -0.8px hsl(var(--shadow-color) / 0.36),
+            2.1px 4.1px 5.2px -1.7px hsl(var(--shadow-color) / 0.36),
+            5px 10px 12.6px -2.5px hsl(var(--shadow-color) / 0.36);
+        --shadow-elevation-high: 0.3px 0.5px 0.7px
+                hsl(var(--shadow-color) / 0.34),
+            1.5px 2.9px 3.7px -0.4px hsl(var(--shadow-color) / 0.34),
+            2.7px 5.4px 6.8px -0.7px hsl(var(--shadow-color) / 0.34),
+            4.5px 8.9px 11.2px -1.1px hsl(var(--shadow-color) / 0.34),
+            7.1px 14.3px 18px -1.4px hsl(var(--shadow-color) / 0.34),
+            11.2px 22.3px 28.1px -1.8px hsl(var(--shadow-color) / 0.34),
+            17px 33.9px 42.7px -2.1px hsl(var(--shadow-color) / 0.34),
+            25px 50px 62.9px -2.5px hsl(var(--shadow-color) / 0.34);
+
+        --bg-opacity: 0.25;
+        --border-opacity: 0.125;
+        display: grid;
+        gap: 1.5rem;
+        background-color: oklch(var(--gray-900-oklch) / var(--bg-opacity));
+        border: 1px solid oklch(var(--gray-50-oklch) / var(--border-opacity));
+        border-radius: 0.5rem;
+        background-clip: padding-box;
+        padding: 1rem;
+        text-align: left;
+        transition:
+            background-color 200ms ease-out,
+            border 200ms ease-out;
+
+        &:hover {
+            --bg-opacity: 0.5;
+            --border-opacity: 0.2;
+        }
+
+        &:focus-visible {
+            --bg-opacity: 0.5;
+            --border-opacity: 0.5;
+            outline: 4px solid oklch(var(--gray-50-oklch) / 0.2);
+        }
+
+        div.wrapper {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        h2 {
+            font-weight: 500;
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            font-size: 0.875rem;
+
+            /* opacity: 0.6; */
+        }
+
+        img {
+            width: 100%;
+            border-radius: 0.25rem;
+            box-shadow: var(--shadow-elevation-high);
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            font-size: 0.75rem;
+
+            li {
+                opacity: 0.6;
+                border: 1px solid oklch(var(--gray-50-oklch) / 0.25);
+                border-radius: 100vmax;
+                padding: 0.125rem 0.5rem;
+            }
+        }
+    }
+
+    dialog {
+        color: var(--gray-50);
+        background-color: var(--gray-800);
+
+        &::backdrop {
+            background-color: black;
+            opacity: 0.75;
+        }
+    }
+}

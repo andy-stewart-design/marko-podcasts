@@ -1,0 +1,14 @@
+<section class="grid">
+    <for|show| of=input.collection>
+        <pod-card content=show/>
+    </for>
+</section>
+<!--  -->
+style {
+    section.grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+    }
+}

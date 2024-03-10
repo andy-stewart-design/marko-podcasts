@@ -1,14 +1,11 @@
-import { getPopularShows } from "../../utils/get-shows";
+import { getPopularShows, getPopularShows2 } from "../../utils/get-shows";
+import { mockdata } from "../../constants/mockdata";
 
 <div class="container">
-  <ds-button size="medium">
-    Testing
-  </ds-button>
-  <await(getPopularShows) client-reorder>
+  <pod-grid collection=mockdata/>
+  <!-- <await(getPopularShows2()) client-reorder>
     <@then|shows|>
-      <for|show| of=shows>
-        <p>${show.name}</p>
-      </for>
+      <pod-grid collection=shows/>
     </@then>
-  </await>
+  </await> -->
 </div>
