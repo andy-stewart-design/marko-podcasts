@@ -1,0 +1,128 @@
+$ const { content } = input;
+$ const imgSrc = (
+    content.images.xl ??
+    content.images.lg ??
+    content.images.md ??
+    content.images.sm
+);
+
+<div class="content">
+    <img
+        src=imgSrc
+        alt=`Cover artwork for ${content.title}`
+        width=100
+        height=100
+    >
+    <div class="wrapper">
+        <h3>${content.artist}</h3>
+        <h2>${content.title}</h2>
+        <ul role="list">
+            <for|genre| of=content.genres>
+                <li>${genre}</li>
+            </for>
+        </ul>
+        <div class="links">
+            <a href=content.appleURL target="_blank">
+                Apple Podcasts
+                <svg viewBox="0 0 20 20" fill="currentColor" width=16 height=16>
+                    <path
+                        fill-rule="evenodd"
+                        d="M5.22 14.78a.75.75 0 0 0 1.06 0l7.22-7.22v5.69a.75.75 0 0 0 1.5 0v-7.5a.75.75 0 0 0-.75-.75h-7.5a.75.75 0 0 0 0 1.5h5.69l-7.22 7.22a.75.75 0 0 0 0 1.06Z"
+                        clip-rule="evenodd"
+                    />
+                </svg>
+            </a>
+            <a href=content.rssURL target="_blank">
+                RSS Feed
+                <svg viewBox="0 0 20 20" fill="currentColor" width=16 height=16>
+                    <path
+                        fill-rule="evenodd"
+                        d="M5.22 14.78a.75.75 0 0 0 1.06 0l7.22-7.22v5.69a.75.75 0 0 0 1.5 0v-7.5a.75.75 0 0 0-.75-.75h-7.5a.75.75 0 0 0 0 1.5h5.69l-7.22 7.22a.75.75 0 0 0 0 1.06Z"
+                        clip-rule="evenodd"
+                    />
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+<!--  -->
+style {
+    div.content {
+        display: grid;
+        gap: 2rem;
+
+        img {
+            width: 100%;
+            border-radius: 0.25rem;
+            box-shadow: var(--shadow-elevation-medium);
+        }
+
+        @media (orientation: landscape) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    div.wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+
+        h2 {
+            font-weight: 500;
+            font-size: 1.75rem;
+
+            @media (width >= 560px) {
+                font-size: 2rem;
+            }
+
+            @media (orientation: landscape) {
+                font-size: 2.5rem;
+            }
+        }
+
+        h3 {
+            font-size: 0.875rem;
+            text-overflow: ellipsis;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+
+            li {
+                opacity: 0.6;
+            }
+        }
+    }
+
+    div.links {
+        display: flex;
+        gap: 0.5rem;
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+
+            border: 1px solid oklch(var(--gray-50-oklch));
+            padding-inline: 1.25rem;
+            padding-block-start: 0.5rem;
+            padding-block-end: calc(0.5rem + 2px);
+            border-radius: 100vmax;
+
+            font-size: 0.875rem;
+            font-weight: 500;
+
+            &:focus-visible {
+                outline: 4px solid oklch(var(--gray-50-oklch) / 0.2);
+            }
+        }
+    }
+}

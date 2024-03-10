@@ -2,6 +2,7 @@
 
 @import "./base/reset.css" layer(reset);
 @import "./base/color.css" layer(base);
+@import "./base/shadow.css" layer(base);
 
 html,
 body {

@@ -34,8 +34,6 @@ interface Podcast {
 }
 
 export async function getShows(query: string) {
-  console.log({ query });
-
   if (query === "") {
     return getPopularShows();
   } else {

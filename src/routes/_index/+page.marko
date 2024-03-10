@@ -2,12 +2,30 @@ import { getShows } from "../../utils/get-shows";
 import { mockdata } from "../../constants/mockdata";
 $ const query = $global.url.searchParams.get("query");
 
-<div class="container">
+<main class="site-container">
   <site-header query=query/>
-  <pod-grid collection=mockdata query=query/>
-  <!-- <await(getShows(query)) client-reorder>
+  <!-- <pod-grid collection=mockdata query=query/> -->
+  <await(getShows(query)) client-reorder>
     <@then|shows|>
       <pod-grid collection=shows query=query/>
     </@then>
-  </await> -->
-</div>
+  </await>
+  <footer>
+    <p>Copyright © 2024 Caster Inc. All rights reserved.</p>
+  </footer>
+</main>
+<!--  -->
+style {
+  footer {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding-inline: 1rem;
+    padding-block-start: 1rem;
+    padding-block-end: 2rem;
+
+    p {
+      text-align: center;
+      opacity: 0.6;
+    }
+  }
+}

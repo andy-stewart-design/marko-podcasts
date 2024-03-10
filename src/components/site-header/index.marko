@@ -10,7 +10,7 @@
             </svg>
              Caster
         </div>
-        <form>
+        <form class="search">
             <input
                 value=input.query
                 type="text"
@@ -24,11 +24,19 @@
 <!--  -->
 style {
     header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+
+        background: oklch(var(--gray-950-oklch) / 0.6);
         border-bottom: 1px solid oklch(var(--gray-50-oklch) / 0.075);
+        backdrop-filter: blur(8px);
+        z-index: 10;
 
         section {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 120px 1fr;
             gap: 1rem;
             max-width: var(--app-max-width);
             margin: auto;
@@ -36,10 +44,8 @@ style {
             padding-inline: 1rem;
             padding-block: 1.5rem;
 
-            div {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
+            @media screen and (width >= 560px) {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             @media screen and (width >= 960px) {
@@ -48,32 +54,41 @@ style {
         }
     }
 
-    div.logo {
-        text-transform: uppercase;
-        font-weight: 600;
-        letter-spacing: 3px;
-    }
-
-    input.search {
+    form.search {
         --bg-opacity: 0.75;
         --border-opacity: 0.15;
         background: oklch(var(--gray-900-oklch) / var(--bg-opacity));
         border: 1px solid oklch(var(--gray-50-oklch) / var(--border-opacity));
         border-radius: 0.25rem;
 
-        display: block;
-        width: 100%;
-
-        padding-inline: 0.5rem;
-        height: 2.5rem;
-
         transition:
             background 200ms ease-out,
             border 200ms ease-out;
 
-        &:focus-visible {
+        &:has(input:focus-visible) {
             --bg-opacity: 1;
             --border-opacity: 0.5;
+            outline: none;
+        }
+    }
+
+    div.logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 3px;
+    }
+
+    input.search {
+        width: 100%;
+        background: transparent;
+
+        padding-inline: 0.5rem;
+        height: 2.5rem;
+
+        &:focus-visible {
             outline: none;
         }
 
