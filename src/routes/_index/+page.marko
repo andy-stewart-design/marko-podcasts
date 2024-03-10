@@ -5,7 +5,7 @@ $ const query = $global.url.searchParams.get("query");
 <main class="site-container">
   <site-header query=query/>
   <!-- <pod-grid collection=mockdata query=query/> -->
-  <await(getShows(query)) client-reorder>
+  <await(getShows(query ?? "")) client-reorder>
     <@then|shows|>
       <pod-grid collection=shows query=query/>
     </@then>
