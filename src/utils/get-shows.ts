@@ -55,23 +55,24 @@ export async function getShows(query: string) {
 }
 
 export async function getPopularShows() {
-  const response = await fetch(
+  // First, get the IDs from Apple Podcasts most popular shows
+  const popularShowIDResponse = await fetch(
     "https://rss.applemarketingtools.com/api/v2/us/podcasts/top/12/podcasts.json"
   );
-  const json = await response.json();
-  const appleIDs = json.feed.results.map((show) => show.id);
+  const popularShowIDData = await popularShowIDResponse.json();
 
-  const showReseults = appleIDs.map((id) => {
+  // Then, use those IDs to get a more robust set of information about each show
+  const PopularShowsResponse = popularShowIDData.feed.results.map((show) => {
+    const { id } = show
     return fetch(`https://itunes.apple.com/lookup?id=${id}`).then((res) =>
       res.json()
     );
   });
-
-  const showData = (await Promise.all(showReseults)).map(
+  const PopularShowsData = (await Promise.all(PopularShowsResponse)).map(
     (show) => show.results
   );
-
-  return showData.flat().map((show) => formatPodcastData(show));
+  // Format results to the expected shape
+  return PopularShowsData.flat().map((show) => formatPodcastData(show));
 }
 
 export async function getShowsByKeyword(query = "technology") {
