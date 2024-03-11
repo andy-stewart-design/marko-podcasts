@@ -11,11 +11,6 @@ const Template = (args) => ({
 export default {
   title: "Example/Podcast Card",
   component: Card,
-  argTypes: {
-    ["content.title"]: {
-      control: { type: "text" },
-    },
-  },
 };
 
 export const Primary = Template.bind({});

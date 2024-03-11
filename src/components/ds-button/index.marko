@@ -4,10 +4,13 @@ class {
     }
 }
 
-<button class=input.size on-click("handleClick")>
+<button class=`test-button ${input.size}` on-click("handleClick")>
     <${input.renderBody}/>
 </button>
 style {
+    .test-button {
+        background-color: blue;
+    }
     .small {
         padding: 8px;
     }

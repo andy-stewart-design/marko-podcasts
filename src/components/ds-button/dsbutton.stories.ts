@@ -6,7 +6,7 @@ const Template = (args) => ({
 });
 
 export default {
-  title: "Example/CTAButton",
+  title: "Example/TestButton",
   component: Button,
   argTypes: {
     size: {
