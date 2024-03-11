@@ -1,3 +1,6 @@
+// Was trying to add individual controls for this but looks like it is a limitation of storybook
+// It doesn't handle nested objects well
+// https://github.com/storybookjs/storybook/issues/12078
 import { addRenderBodies } from "../../utils/storybook";
 import Card from "./index.marko";
 
@@ -9,7 +12,7 @@ export default {
   title: "Example/Podcast Card",
   component: Card,
   argTypes: {
-    title: {
+    ["content.title"]: {
       control: { type: "text" },
     },
   },
