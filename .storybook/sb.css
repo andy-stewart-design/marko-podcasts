@@ -607,3 +607,15 @@ div.links a {
 div.links a:focus-visible {
   outline: 4px solid oklch(var(--gray-50-oklch) / 0.2);
 }
+.test-button {
+  background-color: blue;
+}
+.small {
+  padding: 8px;
+}
+.medium {
+  padding: 16px;
+}
+.large {
+  padding: 24px;
+}
