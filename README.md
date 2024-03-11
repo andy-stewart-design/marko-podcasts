@@ -2,4 +2,4 @@
 
 - View site: `npm run dev`
 - View Storybook: `npm run storybook`
-- Run test: `npm test`
+- Run tests: `npm test`
