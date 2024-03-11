@@ -6,10 +6,10 @@ $ const query = $global.url.searchParams.get("query");
   <site-header query=query/>
   <section class="grid-wrapper">
     <div class="category">
-      <if(input.query)>
+      <if(query)>
         <p>
           <span>Showing results for</span>
-          ${` ${input.query}`}
+          ${` ${query}`}
         </p>
       </if>
       <else>
