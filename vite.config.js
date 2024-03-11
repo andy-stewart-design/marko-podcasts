@@ -5,7 +5,7 @@ import netlifyAdapter from "@marko/run-adapter-netlify";
 export default defineConfig({
   plugins: [
     marko({
-      adapter: netlifyAdapter({ edge: true }),
+      adapter: netlifyAdapter(),
     }),
   ],
 });
