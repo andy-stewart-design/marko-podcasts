@@ -18,6 +18,9 @@ $ const query = $global.url.searchParams.get("query");
     </div>
     <!-- <pod-grid collection=mockdata query=query/> -->
     <await(getShows(query)) client-reorder>
+      <@placeholder>
+        <loading-spinner/>
+      </@placeholder>
       <@then|shows|>
         <pod-grid collection=shows query=query/>
       </@then>
