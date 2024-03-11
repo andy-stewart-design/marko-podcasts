@@ -7,8 +7,17 @@
 html,
 body {
   --app-max-width: 1600px;
+  --app-padding-inline: 1rem;
 
   min-height: 100%;
   color: var(--gray-50);
   background: var(--gray-950);
+
+  @media screen and (width >= 560px) {
+    --app-padding-inline: 2rem;
+  }
+
+  @media screen and (width >= 1120px) {
+    --app-padding-inline: 3rem;
+  }
 }

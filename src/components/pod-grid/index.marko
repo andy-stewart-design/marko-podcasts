@@ -1,33 +1,64 @@
 <section class="wrapper">
-    <div class="grid">
-        <div class="category">
-            <if(input.query)>
-                <p>
-                    <span>Showing results for</span>
-                    ${` ${input.query}`}
-                </p>
-            </if>
-            <else>
-                <p>Popular Podcasts</p>
-            </else>
-        </div>
-        <for|show| of=input.collection>
-            <pod-card content=show/>
-        </for>
+    <div class="category">
+        <if(input.query)>
+            <p>
+                <span>Showing results for</span>
+                ${` ${input.query}`}
+            </p>
+        </if>
+        <else>
+            <p>Popular Podcasts</p>
+        </else>
     </div>
+    <if(input.collection?.length)>
+        <div class="grid">
+            <for|show| of=input.collection>
+                <pod-card content=show/>
+            </for>
+        </div>
+    </if>
+    <else>
+        <div class="no-results">
+            <p>Sorry, we couldn't find anything</p>
+            <a href="/">
+                Clear search
+            </a>
+        </div>
+    </else>
 </section>
 <!--  -->
 style {
     section.wrapper {
+        display: grid;
+        grid-template-rows: min-content 1fr;
+        gap: 1rem;
+        min-height: calc(100vh - 4rem);
+        max-width: var(--app-max-width);
+        margin: auto;
+
+        padding-inline: var(--app-padding-inline);
+        padding-block-start: 8rem;
+        padding-block-end: 2rem;
+
+        div.category {
+            grid-column: 1 / -1;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: capitalize;
+
+            span {
+                opacity: 0.6;
+                font-weight: 400;
+                text-transform: none;
+            }
+        }
+
         div.grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1rem;
-            padding-inline: 1rem;
-            padding-block: 2rem;
-            padding-block-start: 8rem;
-            max-width: var(--app-max-width);
-            margin: auto;
+
+            width: 100%;
 
             opacity: 0;
             animation-name: grid-fade-in;
@@ -36,18 +67,16 @@ style {
             animation-fill-mode: forwards;
             animation-delay: 200ms;
         }
-    }
 
-    div.category {
-        grid-column: 1 / -1;
-        font-size: 0.875rem;
-        font-weight: 500;
-        text-transform: capitalize;
+        div.no-results {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-        span {
-            opacity: 0.6;
-            font-weight: 400;
-            text-transform: none;
+            p {
+                opacity: 0.5;
+            }
         }
     }
 

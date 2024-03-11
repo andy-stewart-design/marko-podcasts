@@ -33,11 +33,24 @@ interface Podcast {
   genres: string[];
 }
 
+let popularShows;
+
 export async function getShows(query: string) {
-  if (query === "") {
-    return getPopularShows();
-  } else {
-    return getShowsByKeyword(query);
+  try {
+    if (!query || query === "") {
+      if (!popularShows) {
+        const data = await getPopularShows();
+        popularShows = data;
+        return data;
+      } else {
+        return popularShows;
+      }
+    } else {
+      return await getShowsByKeyword(query);
+    }
+  } catch {
+    // Error handling would go here
+    return undefined;
   }
 }
 

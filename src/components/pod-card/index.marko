@@ -127,7 +127,7 @@ style {
         opacity: 0;
         animation-name: dialog-fade-in;
         animation-duration: 300ms;
-        animation-timing-function: ease-out;
+        animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
         animation-fill-mode: forwards;
 
         @media (orientation: portrait) {
@@ -139,12 +139,13 @@ style {
         }
 
         &::backdrop {
+            /* css vars aren't working here for some reason */
             background-color: black;
             opacity: 0.5;
             opacity: 0;
             animation-name: backdrop-fade-in;
             animation-duration: 300ms;
-            animation-timing-function: ease-out;
+            animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
             animation-fill-mode: forwards;
         }
     }
