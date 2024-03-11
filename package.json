@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
+    "@marko/run-adapter-node": "^0.1.12",
     "marko": "^5.33.5"
   },
   "devDependencies": {
