@@ -4,18 +4,57 @@ $ const query = $global.url.searchParams.get("query");
 
 <main class="site-container">
   <site-header query=query/>
-  <!-- <pod-grid collection=mockdata query=query/> -->
-  <await(getShows(query)) client-reorder>
-    <@then|shows|>
-      <pod-grid collection=shows query=query/>
-    </@then>
-  </await>
+  <section class="grid-wrapper">
+    <div class="category">
+      <if(input.query)>
+        <p>
+          <span>Showing results for</span>
+          ${` ${input.query}`}
+        </p>
+      </if>
+      <else>
+        <p>Popular Podcasts</p>
+      </else>
+    </div>
+    <!-- <pod-grid collection=mockdata query=query/> -->
+    <await(getShows(query)) client-reorder>
+      <@then|shows|>
+        <pod-grid collection=shows query=query/>
+      </@then>
+    </await>
+  </section>
   <footer>
     <p>Copyright © 2024 Caster Inc. All rights reserved.</p>
   </footer>
 </main>
 <!--  -->
 style {
+  section.grid-wrapper {
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    gap: 1rem;
+    min-height: 100vh;
+    max-width: var(--app-max-width);
+    margin: auto;
+
+    padding-inline: var(--app-padding-inline);
+    padding-block-start: 8rem;
+    padding-block-end: 2rem;
+
+    div.category {
+      grid-column: 1 / -1;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-transform: capitalize;
+
+      span {
+        opacity: 0.6;
+        font-weight: 400;
+        text-transform: none;
+      }
+    }
+  }
+
   footer {
     font-size: 0.75rem;
     font-weight: 500;
